@@ -1,44 +1,34 @@
 namespace org.landchain
 
-participant Person identified by NIC {
+abstract participant Person identified by NIC {
   o String NIC regex = /^[0-9]{9}V$/
+}
+
+participant User extends Person{
+}
+
+participant Registrar extends Person{
+  o String city
 }
 
 asset Land identified by id {
   o String id
-  o Land previousLand optional
-  --> Person owner
-   
+  --> Land previousLand optional
+  --> User owner
 }
 
-participant RegistrarGeneral identified by id {
-  o String id
-  --> Person currentRegGeneral
-}
-
-participant Registrar identified by id {
-  o String id
-  o String city
-  --> Person currentRegGeneral
-}
-
-participant NetworkAdmin identified by id {
-  o String id
-  --> Person admin
-}
-
-transaction CreatePerson{
+transaction CreateUser{
   o String NIC
 }
 
 transaction RegisterLand{
   o String id
-  o Land previousLand optional
-  o Person owner
+  o String previousLandId optional
+  o String ownerId
 }
 
 transaction ChangeOwner{
-  o Land land
-  o Person newOwner
+  o String landId
+  o String newOwnerId
 }
 

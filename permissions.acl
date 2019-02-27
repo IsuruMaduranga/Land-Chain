@@ -27,3 +27,39 @@ rule NetworkAdminSystem {
     resource: "org.hyperledger.composer.system.**"
     action: ALLOW
 }
+
+rule PersonReadLandRegistryPermission {
+    description: "Allow all participants access to all resources"
+    participant: "org.landchain.Person"
+    operation: READ
+    resource: "org.landchain.Land"
+    action: ALLOW
+}
+
+rule RegistrarUserCreationPermission {
+    description: "Allow all participants access to all resources"
+    participant: "org.landchain.Registrar"
+    operation: CREATE
+    resource: "org.landchain.User"
+    transaction: "org.landchain.CreateUser"
+    action: ALLOW
+}
+
+rule RegistrarRegisterLandPermission {
+    description: "Allow all participants access to all resources"
+    participant: "org.landchain.Registrar"
+    operation: CREATE
+    resource: "org.landchain.Land"
+    transaction: "org.landchain.RegisterLand"
+    action: ALLOW
+}
+
+rule RegistrarChangeOwnerPermission {
+    description: "Allow all participants access to all resources"
+    participant: "org.landchain.Registrar"
+    operation: CREATE
+    resource: "org.landchain.Land"
+    transaction: "org.landchain.ChangeOwner"
+    action: ALLOW
+}
+
