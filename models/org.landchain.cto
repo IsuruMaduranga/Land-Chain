@@ -2,7 +2,6 @@ namespace org.landchain
 
 abstract participant Person identified by NIC {
   o String NIC regex = /^[0-9]{9}V$/
-  
 }
 
 participant User extends Person{
@@ -12,11 +11,17 @@ participant User extends Person{
 participant Registrar extends Person{
 }
 
+enum LandStatus {
+  o VALID
+  o DIVIDED
+  o PROHIBITED
+}
+
 asset Land identified by id {
   o String id
   --> Land previousLand optional
   --> User owner
-  o String status
+  o LandStatus status default='VALID'
 }
 
 enum ContractStatus {
@@ -50,12 +55,6 @@ transaction DeleteContract {
   o String id
 }
 
-transaction DevideLand {
-  o String landId
-  o String[] newLandIds
-  o String[] newOwnerIds
-}
-
 transaction CreateContract{
   o String id
   o String sellerId
@@ -66,8 +65,12 @@ transaction CreateContract{
 
 transaction RegisterLand{
   o String id
-  o String previousLandId optional
   o String ownerId
+}
+
+transaction DivideLand{
+  o String oldLandId
+  o String[] newIds
 }
 
 transaction ChangeOwner{
