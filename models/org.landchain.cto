@@ -78,3 +78,9 @@ transaction ChangeOwner{
   o String newOwnerId
 }
 
+@commit(false)
+@returns(Land[])
+transaction getLandHistory {
+  o String id
+}
+

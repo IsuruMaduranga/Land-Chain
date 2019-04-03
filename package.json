@@ -1,10 +1,9 @@
-
 {
   "engines": {
     "composer": "^0.20.6"
   },
   "name": "land_chain",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "blockchain for land registration",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/land_chain.bna",
