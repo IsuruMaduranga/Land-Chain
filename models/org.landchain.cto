@@ -22,6 +22,7 @@ asset Land identified by id {
   --> Land previousLand optional
   --> User owner
   o LandStatus status default='VALID'
+  o DateTime regTime 
 }
 
 enum ContractStatus {
@@ -82,5 +83,11 @@ transaction ChangeOwner{
 @returns(Land[])
 transaction getLandHistory {
   o String id
+}
+
+@commit(false)
+@returns(Land[])
+transaction getLandsByNIC {
+  o String NIC
 }
 

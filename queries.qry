@@ -1,0 +1,6 @@
+query selectLandsByOwner {
+  description: "Select all lands based on their owner"
+  statement:
+      SELECT org.landchain.Land
+          WHERE (owner == _$owner)
+}
