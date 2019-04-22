@@ -20,6 +20,7 @@ enum LandStatus {
 asset Land identified by id {
   o String id
   --> Land previousLand optional
+  o String[] childLands optional
   --> User owner
   o LandStatus status default='VALID'
   o DateTime regTime 
