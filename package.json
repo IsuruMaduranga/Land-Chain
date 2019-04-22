@@ -7,6 +7,9 @@
   "description": "blockchain for land registration",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/land_chain.bna",
+    "install": "composer network install --card PeerAdmin@hlfv1 --archiveFile ./dist/land_chain.bna",
+    "start": "composer network start --networkName land_chain --networkVersion 1.0.0 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card",
+    "import": "composer card import --file ./dist/networkadmin.card",
     "pretest": "npm run lint",
     "lint": "eslint .",
     "test": "nyc mocha -t 0 test/*.js && cucumber-js"
